@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>CraigCav Open Source</title>
+    <title>Craig Cavalier - About Me</title>
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/grid.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
@@ -11,128 +11,150 @@
     <script type="text/javascript">
     (function ($, undefined) {
 
-        // Put custom repo URL's in this object, keyed by repo name.
-        var repoUrls = {
-            "Knockout-jqGridBinding": "jqGridBinding/index.html"
-        };
+      // Put custom repo URL's in this object, keyed by repo name.
+      var repoUrls = {
+        "bootstrap": "http://twitter.github.com/bootstrap/",
+        "finagle": "http://twitter.github.com/finagle/",
+        "hogan.js": "http://twitter.github.com/hogan.js/"
+      };
 
-        function repoUrl(repo) {
-            return repoUrls[repo.name] || repo.url;
-        }
+      function repoUrl(repo) {
+        return repoUrls[repo.name] || repo.html_url;
+      }
 
-        function repoDescription(repo) {
-            return repo.description;
-        }
+      // Put custom repo descriptions in this object, keyed by repo name.
+      var repoDescriptions = {
+        "bootstrap": "An HTML, CSS, and JS toolkit designed to kickstart development of webapps and sites",
+        "naggati2": "A protocol builder for Netty using Scala 2.8"
+      };
 
-        function addRecentlyUpdatedRepo(repo) {
-            var $item = $("<li>");
+      function repoDescription(repo) {
+        return repoDescriptions[repo.name] || repo.description;
+      }
 
-            var $name = $("<a>").attr("href", repo.url).text(repo.name);
-            $item.append($("<span>").addClass("name").append($name));
+      function addRecentlyUpdatedRepo(repo) {
+        var $item = $("<li>");
 
-            var $time = $("<a>").attr("href", repo.url + "/commits").text(strftime("%h %e, %Y", repo.pushed_at));
-            $item.append($("<span>").addClass("time").append($time));
+        var $name = $("<a>").attr("href", repo.html_url).text(repo.name);
+        $item.append($("<span>").addClass("name").append($name));
 
-            $item.append('<span class="bullet">&sdot;</span>');
+        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%h %e, %Y", repo.pushed_at));
+        $item.append($("<span>").addClass("time").append($time));
 
-            var $watchers = $("<a>").attr("href", repo.url + "/watchers").text(repo.watchers + " watchers");
-            $item.append($("<span>").addClass("watchers").append($watchers));
+        $item.append('<span class="bullet">&sdot;</span>');
 
-            $item.append('<span class="bullet">&sdot;</span>');
+        var $watchers = $("<a>").attr("href", repo.html_url + "/watchers").text(repo.watchers + " stargazers");
+        $item.append($("<span>").addClass("watchers").append($watchers));
 
-            var $forks = $("<a>").attr("href", repo.url + "/network").text(repo.forks + " forks");
-            $item.append($("<span>").addClass("forks").append($forks));
+        $item.append('<span class="bullet">&sdot;</span>');
 
-            $item.appendTo("#recently-updated-repos");
-        }
+        var $forks = $("<a>").attr("href", repo.html_url + "/network").text(repo.forks + " forks");
+        $item.append($("<span>").addClass("forks").append($forks));
 
-        function addRepo(repo) {
-            var lang = (repo.language || '').toLowerCase();
-            if (lang == "c#") lang = "csharp";
-            var $item = $("<li>").addClass("repo grid-1 " + lang);
-            var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
-            $link.append($("<h2>").text(repo.name));
-            $link.append($("<h3>").text(repo.language));
-            $link.append($("<p>").text(repoDescription(repo)));
-            $item.appendTo("#repos");
-        }
+        $item.appendTo("#recently-updated-repos");
+      }
 
-        $.getJSON("https://github.com/api/v2/json/repos/show/CraigCav?callback=?", function (result) {
-            var repos = result.repositories;
+      function addRepo(repo) {
+        var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
+        var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
+        $link.append($("<h2>").text(repo.name));
+        $link.append($("<h3>").text(repo.language));
+        $link.append($("<p>").text(repoDescription(repo)));
+        $item.appendTo("#repos");
+      }
 
+      function addRepos(repos, page) {
+        repos = repos || [];
+        page = page || 1;
+
+        var uri = "https://api.github.com/users/craigcav/repos?callback=?"
+                + "&per_page=100"
+                + "&page="+page;
+
+        $.getJSON(uri, function (result) {
+          if (result.data && result.data.length > 0) {
+            repos = repos.concat(result.data);
+            addRepos(repos, page + 1);
+          }
+          else {
             $(function () {
-                $("#num-repos").text(repos.length);
+              $("#num-repos").text(repos.length);
 
-                // Convert pushed_at to Date.
-                $.each(repos, function (i, repo) {
-                    repo.pushed_at = new Date(repo.pushed_at);
+              // Convert pushed_at to Date.
+              $.each(repos, function (i, repo) {
+                repo.pushed_at = new Date(repo.pushed_at);
 
-                    var weekHalfLife = 1.146 * Math.pow(10, -9);
+                var weekHalfLife  = 1.146 * Math.pow(10, -9);
 
-                    var pushDelta = (new Date) - Date.parse(repo.pushed_at);
-                    var createdDelta = (new Date) - Date.parse(repo.created_at);
+                var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
+                var createdDelta = (new Date) - Date.parse(repo.created_at);
 
-                    var weightForPush = 1;
-                    var weightForWatchers = 1.314 * Math.pow(10, 7);
+                var weightForPush = 1;
+                var weightForWatchers = 1.314 * Math.pow(10, 7);
 
-                    repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
-                    repo.hotness += weightForWatchers * repo.watchers / createdDelta;
-                });
+                repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
+                repo.hotness += weightForWatchers * repo.watchers / createdDelta;
+              });
 
-                // Sort by highest # of watchers.
-                repos.sort(function (a, b) {
-                    if (a.hotness < b.hotness) return 1;
-                    if (b.hotness < a.hotness) return -1;
-                    return 0;
-                });
+              // Sort by highest # of watchers.
+              repos.sort(function (a, b) {
+                if (a.hotness < b.hotness) return 1;
+                if (b.hotness < a.hotness) return -1;
+                return 0;
+              });
 
-                $.each(repos, function (i, repo) {
-                    addRepo(repo);
-                });
+              $.each(repos, function (i, repo) {
+                addRepo(repo);
+              });
 
-                // Sort by most-recently pushed to.
-                repos.sort(function (a, b) {
-                    if (a.pushed_at < b.pushed_at) return 1;
-                    if (b.pushed_at < a.pushed_at) return -1;
-                    return 0;
-                });
+              // Sort by most-recently pushed to.
+              repos.sort(function (a, b) {
+                if (a.pushed_at < b.pushed_at) return 1;
+                if (b.pushed_at < a.pushed_at) return -1;
+                return 0;
+              });
 
-                $.each(repos.slice(0, 3), function (i, repo) {
-                    addRecentlyUpdatedRepo(repo);
-                });
+              $.each(repos.slice(0, 3), function (i, repo) {
+                addRecentlyUpdatedRepo(repo);
+              });
             });
+          }
         });
-
+      }
+      addRepos();
     })(jQuery);
     </script>
   </head>
   <body>
     <div id="wrapper" class="grid clearfix">
       <div id="main" class="grid-1">
-        <h1>CraigCav's Github page</h1>
+        <h1>About me</h1>
+        <p>My name is Craig Cavalier and I&#8217;m a software engineer currently living in Houston, TX and working for <a href="http://www.liquidframeworks.com/">LiquidFrameworkds</a>. You can find a little more about me from the following links:</p>
         <p>Twitter: <a href="https://twitter.com/#!/CraigCav">@CraigCav</a></p>
-        <p>Blog: <a href="http://craigcav.wordpress.com/about/">About</a></p>
+        <p>Blog: <a href="http://craigcav.wordpress.com/about/">craigcav.wordpress.com</a></p>
+        <a href="content/cv.html"><img class="alignnone size-full wp-image-555" title="View my CV" src="assets/view-cv.png" alt="View my CV" width="169" height="89"></a>
       </div>
 
       <div class="grid grid-3">
         <div id="statistics" class="grid-1 alpha header">
           <h1>Statistics</h1>
           <p>
-            <a href="https://github.com/CraigCav/repositories"><span id="num-repos">&nbsp;</span> public repos</a>
+            <a href="https://github.com/craigcav/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
+            <br>
           </p>
+          <p class="email"><a href="mailto:craigcav@gmail.com">craigcav @ gmail.com</a></p>
         </div>
 
         <div id="recently-updated" class="grid-2 omega header">
-          <h1>Recently updated <a href="https://github.com/CraigCav/repositories">View All on GitHub</a></h1>
+          <h1>Recently updated <a href="https://github.com/craigcav/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
         </div>
       </div>
 
       <ol id="repos"></ol>
-        <p>
-            <small>Page inspired with implementation by <a href="https://github.com/twitter/twitter.github.com">Twitter</a> and <a href="http://lokad.github.com/">lokad</a>.</small>            
-        </p>
+      <p>
+        <small>Page inspired with implementation by <a href="http://twitter.github.io/">Twitter</a> and <a href="http://lokad.github.io/">lokad</a>.</small>
+      </p>
     </div>
-      
   </body>
 </html>

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>Craig Cavalier's résumé</title>
+<meta name="viewport" content="width=device-width" />
+<style>
+/**
+ * "Variables"
+ */
+h1, h2, .date {
+	font: small-caps normal 100% Constantia, 'Palatino Linotype', Palatino, Georgia, serif;
+}
+
+h1, 
+header > h1 > span,
+header > ul > li:before {
+	color: #9BBB59;
+}
+ 
+/**
+ * Style
+ */
+
+* { margin:0; }
+
+html {
+	background: #9BA2B0;
+	font-size: 14px;
+}
+
+body {
+	width: 45em;
+	padding: 7em 10%;
+	margin: 1em auto;
+	background: white;
+	box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
+	font: 100%/1.5 'Segoe UI', Optima, 'Hiragino Kaku Gothic Pro', 'Apple Gothic', Tahoma, 'Helvetica Neue', sans-serif;
+	
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+	
+	-moz-transition: .5s font-size;
+	-ms-transition: .5s font-size;
+	-o-transition: .5s font-size;
+	-webkit-transition: .5s font-size;
+	transition: .5s font-size;
+}
+
+h1 {
+	margin-top: 1.2em;
+	font-size: 180%;
+}
+
+h2 {
+	margin-top: 1em;
+	font-size: 150%;
+}
+
+a {
+	color:#4F6128;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted #4F6128;
+	cursor: help;
+}
+
+p {
+	margin: .6em 0;
+}
+
+h1 + p {
+	margin-top: 0;
+}
+
+ul {
+	padding: 0;
+	list-style: square;
+}
+
+header {
+	text-align: center;
+}
+
+	header > h1 {
+		color: #7F7F7F;
+		border-bottom: 1px solid #9BBB59;
+		margin: 0 0 .15em;
+		text-indent: 1.2em;
+		font-size: 450%;
+		line-height: 1.05;
+		font-variant: normal;
+	}
+	
+		header > h1 > span {
+			display: inline-block;
+			margin-left: -2.7em;
+			vertical-align: super;
+			font-size: 50%;
+		}
+		
+	header > ul {
+		display: block;
+		margin-bottom: .5em;
+	}
+	
+		header > ul > li {
+			display: inline;
+			list-style: none;
+		}
+		
+		header > ul > li:before {
+			content: '● ';
+		}
+		
+		header > ul > li:first-child:before {
+			content: none;
+		}
+	
+	address {
+		font-style: normal;
+	}
+	
+ol.timeline {
+	padding: 0;
+	border: 0 solid #ddd;
+	border-width: 4px 0;
+}
+
+	ol.timeline > li {
+		list-style: none;
+		padding: .4em 0;
+		border: 1px solid white; /* Chrome printing bug */
+		border-top-color: #ccc;
+	}
+	
+	ol.timeline > li:first-child {
+		border-top: 0;
+	}
+	
+		ol.timeline > li > p {
+			margin: 0;
+		}
+		
+		ol.timeline > li > .date {
+			float: left;
+			margin-left: .1em;
+			max-width: 8rem;
+			color: gray;
+			font-size: 110%;
+		}
+	
+		ol.timeline > li > .date ~ p {
+			margin-left: 9rem;
+		}
+		
+.note {
+	margin-top: .4em;
+	font-size: 75%;
+}
+
+	.note a:not(:hover):not(:active) {
+		color: inherit;
+	}
+
+footer {
+	margin-top: 3em;
+	font-style: italic;
+}
+
+.amp {
+	font-style: italic;
+}
+
+@media (max-width:950px) {
+	html { font-size: 12px; }
+}
+
+@media (max-width:700px) {
+	html { font-size: 11px; }
+}
+
+@media (max-width:600px) {
+	body { width: auto; margin: 1em; }
+}
+
+@media print {
+	body {
+		box-shadow: none;	 
+	}
+	
+	header > h1 {
+		color: black;
+	}
+}
+</style>
+
+</head>
+<body>
+
+<header>
+	<h1>Craig Cavalier <span>CV</span></h1>
+	<ul>
+		<li><a href="mailto:craigcav@gmail.com">craigcav@gmail.com</a></li>
+		<li><a href="http://craigcav.wordpress.com">craigcav.wordpress.com</a></li>
+		<li><a href="http://twitter.com/craigcav">@CraigCav</a></li>
+		<li><a href="https://github.com/craigcav">Github</a></li>
+	</ul>
+	<address>3805 W Alabama St, Apt 7205, Houston TX, 77027</address>
+</header>
+
+<section id="summary">
+	<h1>Summary</h1>
+	<p>Enthusiastic software developer, commercially experienced in developing <strong>scalable web applications</strong>. Excellent interpersonal and communication skills and thrives within a team environment. <strong>Perpetual learner</strong> who loves helping others achieve their potential. A logical thinker who is methodical in nature with excellent <strong>problem solving skills</strong>. Passionate about <strong>open web standards</strong>. Actively participates in the developer community; frequently participates in technical forums, maintains a blog; enjoys participating in developer community events.
+	</p>
+</section>
+
+<section id="work-experience">
+	<h1>Work experience</h1>
+	<ol class="timeline">
+		<li>
+			<p class="date">2011–Present</p>
+			<p>Lead Software Engineer  • <a href="www.liquidframeworks.com">LiquidFrameworks Inc.</a></p>
+			<p class="note">Delivered technical design and architecture guidance on solution implementations. Mentored and partnered with team members to promote good software design practices and agile techniques. Provided hands-on coding expertise to ensure delivery of quality software solutions as part of the FieldFX SaaS product. Designed and implemented a complimentary suite of mobile applications. </p>
+		</li>
+		
+		<li>
+			<p class="date">2008–2011</p>
+			<p>Senior Software Engineer  • <a href="http://www.allocatesoftware.com/">Allocate Software Plc.</a></p>
+			<p class="note">Delivered solutions from conception to production for clients across the defense and healthcare sectors, including the UK National Health Service and NATO.</p>
+		</li>
+		
+		<li>
+			<p class="date">2004–2008</p>
+			<p>Software Engineer  • <a href="http://www.systemc.com/">system C.</a></p>
+			<p class="note">Initially an internship, but due to outstanding performance, received a financial sponsorship for final year of university study and remained at the company following graduation. Promoted to a position within the senior software development team.</p>
+		</li>
+	</ol>
+</section>
+
+<section id="technical-skills">
+	<h1>Technical skills</h1>
+	<p>I have a broad understanding of the full Open Web Stack of technologies, including:</p>
+	<ul>
+		<li>CSS (including CSS3)</li>
+		<li>JavaScript (ECMAScript), DOM &amp; related APIs</li>
+		<li>HTML5 and related APIs</li>
+		<li>Server-side platforms including Node.js and ASP.NET</li>
+	</ul>
+	<p>I also have experience with a wide range of open source libraries including: Knockout.js, Backbone.js, Require.js, jQuery, Jasmine, Phantom.js, Grunt.js, Apache Cordova, NNibernate, StructureMap, Castle Windsor, NServiceBus and many more.</p>
+</section>
+
+<section id="demos">
+	<h1>Achievements</h1>
+	<ol class="timeline">
+		<li>
+			<p>Architected, designed and implemented an optimized <strong>offline synchronization</strong> mechanism for LiquidFrameworks’ FieldFX mobile platform. This eliminated lengthy sync sessions, reducing average sync times down to seconds where they previously took tens of minutes. This provided a significant competitive advantage for the FieldFX product.</a></p>
+		</li>
+		<li>
+			<p>Modernized the application suite of LiquidFrameworks to include a <strong>suite of mobile applications</strong> across a variety of platforms (including iOS, Android, Windows Phone) and supporting a diverse range of device sizes. This increased the business value and alignment of LiquidFrameworks’ application portfolio.</p>
+		</li>
+		<li>
+			<p>Introduced an <strong>automated build environment</strong> effectively eliminating the complicated process involving compilation, relocating files, producing documentation and loading schemas. Builds are now fully tested, staged, and deployable to any environment in a consistent and automated manner, triggered by a single, repeatable step.</p>
+		</li>
+		<li>
+			<p>Implemented and extended system functionality using ASP.NET MVC for Allocate Software’s Employee Online product and its e-expenses solution. This work included an <strong>HTML5 based iPhone web application</strong> for UK National Health Service Employees. Meeting our client’s requirements on time and within budget, this generated business from new clients and created a more maintainable and functionally rich product.</p>
+		</li>
+		<li>
+			<p>As part of a team, enhanced IQSystems’ healthcare product IQUtopia to handle clinical referral transactions from any GP in the UK, as part of the National Health Services’ £12 Billion ‘Connecting for Health’ project – gaining official connectivity status - leading to greater functionality and marketability of the product.</p>
+		</li>
+	</ol>
+</section>
+
+<section id="education">
+	<h1>Education</h1>
+	<ol class="timeline">
+		<li>
+			<p class="date">2002–2008</p>
+			<p>B.Sc. (Hons) in Computing • <a href="http://home.bournemouth.ac.uk/">Bournemouth University</a></p>
+			<p class="note">Final year studies included Advanced Networking, Advanced Databases, Internet Applications Development, Object Oriented Software Development and Software Engineering Management (including study of agile development methods). Previous units covered Systems Architecture, Systems Programming, Human Computer Interaction and Operating Systems.</p>
+		</li>
+		<li>
+			<p class="date">2000–2002</p>
+			<p>4 A2 Levels and 1 AS Level</p>
+			<p class="note">Four A2 levels include: Applied Mathematics with Mechanics and Statistics, Further Mathematics, Information and Communications Technology Systems, General Studies. AS Level: Design & Technology: Product Design.</p>
+		</li>
+	</ol>
+</section>
+
+<section id="interests">
+	<h1>Professional interests</h1>
+	<p>Open web standards, 
+	front-end web development, 
+	web development education, 
+	API design, 
+	technical writing</p>	
+</section>
+
+<footer>
+	<p>References are available upon request.</p>
+</footer>
+
+<script>
+(function(){
+	if(!document.querySelectorAll) return;
+	var external = document.querySelectorAll('a[href^="http://"], a[href^="https://"]'), a;
+	for(var i=external.length; a=external[--i];) a.setAttribute('target', '_blank');
+})();
+</script>
+</body>
+</html>
