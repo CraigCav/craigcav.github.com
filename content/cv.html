@@ -11,13 +11,13 @@
  * "Variables"
  */
 h1, h2, .date {
-	font: small-caps normal 100% Constantia, 'Palatino Linotype', Palatino, Georgia, serif;
+	font-weight: normal;
 }
 
 h1, 
 header > h1 > span,
 header > ul > li:before {
-	color: #9BBB59;
+	color: #888;
 }
  
 /**
@@ -27,16 +27,13 @@ header > ul > li:before {
 * { margin:0; }
 
 html {
-	background: #9BA2B0;
 	font-size: 14px;
 }
 
 body {
-	width: 45em;
-	padding: 7em 10%;
+	max-width: 768px;
 	margin: 1em auto;
 	background: white;
-	box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
 	font: 100%/1.5 'Segoe UI', Optima, 'Hiragino Kaku Gothic Pro', 'Apple Gothic', Tahoma, 'Helvetica Neue', sans-serif;
 	
 	-moz-hyphens: auto;
@@ -63,7 +60,8 @@ h2 {
 }
 
 a {
-	color:#4F6128;
+	color: #3b8bba;
+	text-decoration: none;
 }
 
 abbr[title] {
@@ -89,38 +87,37 @@ header {
 }
 
 	header > h1 {
-		color: #7F7F7F;
-		border-bottom: 1px solid #9BBB59;
+		color: #4b4b4b;
+		border-bottom: 1px solid #eee;
 		margin: 0 0 .15em;
-		text-indent: 1.2em;
 		font-size: 450%;
-		line-height: 1.05;
 		font-variant: normal;
 	}
 	
-		header > h1 > span {
-			display: inline-block;
-			margin-left: -2.7em;
-			vertical-align: super;
-			font-size: 50%;
-		}
-		
 	header > ul {
 		display: block;
 		margin-bottom: .5em;
+		column-count: 2;
+		text-align: left;
+	}
+
+	header > ul {
+		display: block;
+		margin-bottom: .5em;
+		column-count: 2;
+		text-align: left;
 	}
 	
 		header > ul > li {
-			display: inline;
 			list-style: none;
 		}
-		
-		header > ul > li:before {
-			content: '● ';
+
+		header > ul > li {
+			text-align: left;
 		}
-		
-		header > ul > li:first-child:before {
-			content: none;
+
+		header > ul > li:nth-last-of-type(-n+2) {
+			text-align: right;
 		}
 	
 	address {
@@ -189,27 +186,17 @@ footer {
 @media (max-width:600px) {
 	body { width: auto; margin: 1em; }
 }
-
-@media print {
-	body {
-		box-shadow: none;	 
-	}
-	
-	header > h1 {
-		color: black;
-	}
-}
 </style>
 
 </head>
 <body>
 
 <header>
-	<h1>Craig Cavalier <span>CV</span></h1>
+	<h1>Craig Cavalier</h1>
 	<ul>
 		<li><a href="mailto:craigcav@gmail.com">craigcav@gmail.com</a></li>
 		<li><a href="http://craigcav.wordpress.com">craigcav.wordpress.com</a></li>
-		<li><a href="http://twitter.com/craigcav">@CraigCav</a></li>
+		<li><a href="http://twitter.com/craigcav">twitter.com/craigcav</a></li>
 		<li><a href="https://github.com/craigcav">github.com/craigcav</a></li>
 	</ul>
 </header>
